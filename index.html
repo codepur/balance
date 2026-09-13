@@ -35,12 +35,14 @@
     font-weight: bold; font-style: normal; font-display: swap;
   }
 
-  @page { size: 297mm 210mm; margin: 0; }
+  @page { size: A4 landscape; margin: 0; }
   * { box-sizing: border-box; }
   html, body {
     margin: 0; padding: 0;
     background: #DADDE2;
     font-family: 'Carlito', sans-serif;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   :root{
@@ -310,10 +312,20 @@
   .footer .sep{ color: var(--gold); margin: 0 10px; }
 
   @media print{
+    @page { size: A4 landscape; margin: 0; }
     #toolbar, .page-wrap-pad { display: none !important; }
-    html, body{ background: #fff; }
-    .page-wrap{ padding: 0; }
-    .sheet{ box-shadow: none; margin: 0; }
+    html, body{ 
+      background: #fff;
+      width: 297mm; height: 210mm;
+      margin: 0; padding: 0;
+    }
+    .page-wrap{ padding: 0; margin: 0; display: block; }
+    .sheet{ 
+      box-shadow: none; margin: 0; 
+      width: 297mm; height: 210mm;
+      page-break-after: avoid;
+      page-break-before: avoid;
+    }
   }
 </style>
 </head>
