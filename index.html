@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Certificate of Participation — Balance & Move Physiotherapy Clinic</title>
+<style>
+  @font-face{
+    font-family: 'GFS Baskerville';
+    src: url(data:font/otf;base64,__FONT_BASKERVILLE__) format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
+  }
+  @font-face{
+    font-family: 'TeX Gyre Chorus';
+    src: url(data:font/otf;base64,__FONT_CHORUS__) format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
+  }
+  @font-face{
+    font-family: 'TeX Gyre Pagella';
+    src: url(data:font/otf;base64,__FONT_PAGELLA_REG__) format('opentype');
+    font-weight: normal; font-style: normal; font-display: swap;
+  }
+  @font-face{
+    font-family: 'TeX Gyre Pagella';
+    src: url(data:font/otf;base64,__FONT_PAGELLA_ITAL__) format('opentype');
+    font-weight: normal; font-style: italic; font-display: swap;
+  }
+  @font-face{
+    font-family: 'Carlito';
+    src: url(data:font/truetype;base64,__FONT_CARLITO_REG__) format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+  }
+  @font-face{
+    font-family: 'Carlito';
+    src: url(data:font/truetype;base64,__FONT_CARLITO_BOLD__) format('truetype');
+    font-weight: bold; font-style: normal; font-display: swap;
+  }
+
+  @page { size: 297mm 210mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #DADDE2;
+    font-family: 'Carlito', sans-serif;
+  }
+
+  :root{
+    --cream: #FBF7EC;
+    --navy: #16223B;
+    --navy-soft: #2B3E5C;
+    --gold: #A9832E;
+    --gold-pale: #E8D9AE;
+    --maroon: #7A2331;
+    --ink: #241D14;
+  }
+
+  /* ---------------- toolbar (screen only) ---------------- */
+  #toolbar{
+    max-width: 1123px;
+    margin: 18px auto 0;
+    background: #ffffff;
+    border: 1px solid #D8DBE0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    font-family: 'Carlito', sans-serif;
+    box-shadow: 0 2px 8px rgba(20,20,30,0.06);
+  }
+  .field{ display:flex; flex-direction:column; gap:4px; }
+  .field label{
+    font-size: 11px; font-weight: bold; letter-spacing: .4px;
+    color: #4a4a52; text-transform: uppercase;
+  }
+  .field input{
+    font-family: 'Carlito', sans-serif;
+    font-size: 14px;
+    padding: 8px 10px;
+    border: 1px solid #C7CAD1;
+    border-radius: 6px;
+    min-width: 190px;
+    color: #1c1c22;
+  }
+  .field input:focus{ outline: 2px solid #A9832E; outline-offset: 1px; }
+  #printBtn{
+    margin-left: auto;
+    background: #16223B;
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-family: 'Carlito', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: .3px;
+    cursor: pointer;
+  }
+  #printBtn:hover{ background: #223a5e; }
+  #toolbarHint{
+    width: 100%;
+    font-size: 12px;
+    color: #7a7a84;
+    margin-top: -4px;
+  }
+
+  /* ---------------- page / sheet ---------------- */
+  .page-wrap{
+    padding: 24px 0 48px;
+    display: flex;
+    justify-content: center;
+  }
+  .sheet{
+    position: relative;
+    width: 297mm; height: 210mm;
+    background: var(--cream);
+    box-shadow: 0 6px 24px rgba(20,20,30,0.18);
+    overflow: hidden;
+    font-family: 'TeX Gyre Pagella', serif;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  /* ---------- borders ---------- */
+  .frame-outer{
+    position: absolute; top: 26px; left: 26px; right: 26px; bottom: 26px;
+    border: 1.5px solid var(--gold);
+  }
+  .frame-navy{
+    position: absolute; top: 36px; left: 36px; right: 36px; bottom: 36px;
+    border: 2.5px solid var(--navy);
+  }
+
+  .corner{ position:absolute; width:34px; height:34px; }
+  .corner svg{ width:100%; height:100%; display:block; }
+  .corner.tl{ top: 24px; left: 24px; }
+  .corner.tr{ top: 24px; right: 24px; transform: scaleX(-1); }
+  .corner.bl{ bottom: 24px; left: 24px; transform: scaleY(-1); }
+  .corner.br{ bottom: 24px; right: 24px; transform: scale(-1,-1); }
+
+  /* ---------- watermark ---------- */
+  .watermark{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px;
+    opacity: 0.10;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .watermark img{ width: 100%; height: auto; }
+
+  /* ---------- corner logos ---------- */
+  .physio-logo{
+    position: absolute;
+    top: 60px; left: 60px;
+    height: 96px; width: auto;
+    z-index: 2;
+  }
+  .credit-hours{
+    position: absolute;
+    top: 66px; right: 60px;
+    font-family: 'TeX Gyre Pagella', serif;
+    font-size: 11px;
+    color: var(--navy);
+    z-index: 2;
+    text-align: center;
+  }
+
+  /* ---------- content ---------- */
+  .content{
+    position: absolute; top: 60px; left: 100px; right: 100px; bottom: 60px;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .brandmark{ margin-top: 4px; }
+  .brand-logo{ height: 140px; width: auto; display: block; margin: 0 auto; }
+  .brand-name{
+    font-family: 'GFS Baskerville', serif;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: var(--navy);
+    margin-top: 6px;
+    font-weight: bold;
+  }
+  .brand-sub{
+    font-family: 'Carlito', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 3.5px;
+    color: var(--gold);
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+
+  .divider{ margin: 12px auto 10px; width: 220px; }
+
+  .cert-title{
+    font-family: 'GFS Baskerville', serif;
+    font-size: 33px;
+    letter-spacing: 6px;
+    color: var(--navy);
+    margin: 4px 0 2px;
+    text-transform: uppercase;
+  }
+  .cert-sub-rule{
+    width: 340px; height: 1px; margin: 8px auto 16px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .lead-in{
+    font-family: 'TeX Gyre Pagella', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--navy-soft);
+    margin-bottom: 6px;
+  }
+
+  .recipient{
+    font-family: 'TeX Gyre Chorus', cursive;
+    font-size: 50px;
+    color: var(--navy);
+    margin: 2px 0 0;
+    line-height: 1.1;
+  }
+  .recipient-underline{
+    width: 380px; margin: 2px auto 14px;
+  }
+
+  .body-line{
+    font-family: 'TeX Gyre Pagella', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--navy-soft);
+    margin: 0 0 8px;
+  }
+  .workshop-name{
+       font-family: 'TeX Gyre Pagella', serif;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+   color: var(--maroon);
+    text-transform: uppercase;
+    margin: 2px 0 4px;
+  }
+  .held-on{
+    font-family: 'TeX Gyre Pagella', serif;
+    font-size: 14.5px;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .held-on b{ color: var(--navy); }
+
+  .desc{
+    font-family: 'TeX Gyre Pagella', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #4a4032;
+    max-width: 640px;
+    margin: 0 auto 8px;
+  }
+
+  /* ---------- signatures ---------- */
+  .signatures{
+    position: absolute; left: 0; right: 0; bottom: 100px;
+    display: table; width: 100%; table-layout: fixed;
+    z-index: 2;
+  }
+  .sig{ display: table-cell; width: 50%; text-align: center; vertical-align: bottom; }
+  .sig-img{
+    height: 80px; width: auto;
+    display: block; margin: 0 auto -2px;
+    border-radius: 70%;
+  }
+  .sig-line{
+    width: 210px; height: 1px; background: var(--navy);
+    margin: 4px auto 6px;
+  }
+  .sig-name{
+    font-family: 'Carlito', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    color: var(--navy);
+    letter-spacing: 0.3px;
+  }
+  .sig-title{
+    font-family: 'Carlito', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 1px;
+  }
+
+  /* ---------- footer ---------- */
+  .footer{
+    position: absolute; left: 50%; bottom: 42px; transform: translateX(-50%);
+    font-family: 'Carlito', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 1.2px;
+    color: var(--navy-soft);
+    white-space: nowrap;
+    padding: 5px 22px;
+    border-top: 1px solid var(--gold-pale);
+    border-bottom: 1px solid var(--gold-pale);
+  }
+  .footer b{ color: var(--navy); }
+  .footer .sep{ color: var(--gold); margin: 0 10px; }
+
+  @media print{
+    #toolbar, .page-wrap-pad { display: none !important; }
+    html, body{ background: #fff; }
+    .page-wrap{ padding: 0; }
+    .sheet{ box-shadow: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <div id="toolbar">
+    <div class="field">
+      <label for="inputName">Participant Name</label>
+      <input type="text" id="inputName" value="Dr. Nagma Parween">
+    </div>
+    <div class="field">
+      <label for="inputMethod">Workshop / Method Name</label>
+      <input type="text" id="inputMethod" value="Kinesio Taping Method">
+    </div>
+    <div class="field">
+      <label for="inputDate">Date</label>
+      <input type="date" id="inputDate" value="2026-08-15">
+    </div>
+    <div class="field">
+      <label for="inputCertId">Certificate ID</label>
+      <input type="text" id="inputCertId" value="KT-2026-0489">
+    </div>
+    <div class="field">
+      <label for="inputCreditHours">Credit Hours</label>
+      <input type="text" id="inputCreditHours" value="8 Hrs">
+    </div>
+    <div class="field" style="width: 100%;">
+      <label for="inputDescText">Description Text</label>
+      <textarea id="inputDescText" rows="2" style="font-family:'Carlito',sans-serif; font-size:14px; padding:8px 10px; border:1px solid #C7CAD1; border-radius:6px; width:100%; color:#1c1c22; resize:vertical;">actively engaged and completed the hands-on training, demonstrating proficiency in Kinesio Taping Method techniques for musculoskeletal conditions.</textarea>
+    </div>
+    <button id="printBtn" onclick="window.print()">Print / Save as PDF</button>
+    <div id="toolbarHint">This panel won't appear on the printed or saved certificate. Editing here updates the preview below — use "Print / Save as PDF" and choose A4, landscape, no margins to download.</div>
+  </div>
+
+  <div class="page-wrap">
+    <div class="sheet">
+
+      <div class="frame-outer"></div>
+      <div class="frame-navy"></div>
+      <div class="watermark"><img src="assets/logo.png" alt="watermark"></div>
+      <img src="assets/physio.png" class="physio-logo" alt="Physiotherapy Logo">
+      <div class="credit-hours">
+        <div style="font-size:7px; color:var(--navy); letter-spacing:4px; margin-bottom:1px; margin-left:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        Credit Hours : <span id="creditHoursSpan">8 Hrs</span>
+      </div>
+
+      <div class="corner tl"><svg viewBox="0 0 34 34"><path d="M2,34 L2,10 Q2,2 10,2 L34,2" fill="none" stroke="#A9832E" stroke-width="2"/></svg></div>
+      <div class="corner tr"><svg viewBox="0 0 34 34"><path d="M2,34 L2,10 Q2,2 10,2 L34,2" fill="none" stroke="#A9832E" stroke-width="2"/></svg></div>
+      <div class="corner bl"><svg viewBox="0 0 34 34"><path d="M2,34 L2,10 Q2,2 10,2 L34,2" fill="none" stroke="#A9832E" stroke-width="2"/></svg></div>
+      <div class="corner br"><svg viewBox="0 0 34 34"><path d="M2,34 L2,10 Q2,2 10,2 L34,2" fill="none" stroke="#A9832E" stroke-width="2"/></svg></div>
+
+      <div class="content">
+
+        <div class="brandmark">
+          <img class="brand-logo" src="assets/logo.png" alt="Balance & Move logo">
+          <div class="brand-name">BALANCE&nbsp;&amp;&nbsp;MOVE</div>
+          <div class="brand-sub">Physiotherapy Clinic</div>
+        </div>
+
+        <div class="divider">
+          <svg width="220" height="14" viewBox="0 0 220 14">
+            <line x1="0" y1="7" x2="92" y2="7" stroke="#A9832E" stroke-width="1"/>
+            <line x1="128" y1="7" x2="220" y2="7" stroke="#A9832E" stroke-width="1"/>
+            <path d="M110,2 L116,7 L110,12 L104,7 Z" fill="#A9832E"/>
+          </svg>
+        </div>
+
+        <div class="cert-title">Certificate of Participation</div>
+        <div class="cert-sub-rule"></div>
+
+        <div class="lead-in">This is to certify that</div>
+        <div class="recipient" id="recipientName">Dr. Nagma Parween</div>
+        <div class="recipient-underline">
+          <svg width="380" height="12" viewBox="0 0 380 12">
+            <path d="M2,6 C 90,-2 290,-2 378,6" fill="none" stroke="#A9832E" stroke-width="1.2"/>
+          </svg>
+        </div>
+
+        <div class="body-line">has successfully participated in the</div>
+        <div class="workshop-name">Workshop on <span id="methodTitleSpan">Kinesio Taping Method</span></div>
+        <div class="held-on">Held on <b><span id="dateHeldSpan">15<sup style="font-size:9px;">th</sup> August 2026</span></b> at <b>New Delhi, India</b>.</div>
+
+        <div class="desc">
+          <span id="descNameSpan">Dr. Nagma Parween</span> <span id="descTextSpan">actively engaged and completed the hands-on training, demonstrating proficiency in Kinesio Taping Method techniques for musculoskeletal conditions.</span>
+        </div>
+
+      </div>
+
+      <div class="signatures">
+        <div class="sig">
+          <img class="sig-img" src="assets/hooriya.png" alt="Dr. Hooriya Afsar signature">
+          <div class="sig-line"></div>
+          <div class="sig-name">Dr. Hooriya Afsar (PT)</div>
+          <div class="sig-title">BPT, MPT ( Neurology) Organiser</div>
+        </div>
+        <div class="sig">
+          <img class="sig-img" src="assets/danish.png" alt="Dr. Danish signature">
+          <div class="sig-line"></div>
+          <div class="sig-name">Dr. Danish Khan (PT)</div>
+          <div class="sig-title">Organising Chairperson, Hijama specialist</div>
+        </div>
+      </div>
+
+      <div class="footer"><b>Date:</b> <span id="dateFooterSpan">August 15, 2026</span> <span class="sep">&#9670;</span> <b>Certificate ID:</b> <span id="certIdSpan">KT-2026-0489</span></div>
+
+    </div>
+  </div>
+
+<script>
+  var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  function ordinal(n){
+    var s = ["th","st","nd","rd"], v = n % 100;
+    return n + (s[(v-20)%10] || s[v] || s[0]);
+  }
+
+  function formatDateParts(isoStr){
+    // isoStr: "YYYY-MM-DD" — parsed manually to avoid timezone shifting
+    var parts = isoStr.split("-");
+    var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+    var monthName = MONTHS[m - 1] || "";
+    return {
+      held: ordinal(d) + " " + monthName + " " + y,
+      footer: monthName + " " + d + ", " + y
+    };
+  }
+
+  function updateCertificate(){
+    var name = document.getElementById('inputName').value.trim() || "Participant Name";
+    var method = document.getElementById('inputMethod').value.trim() || "Kinesio Taping Method";
+    var dateVal = document.getElementById('inputDate').value;
+    var certId = document.getElementById('inputCertId').value.trim() || "—";
+    var descText = document.getElementById('inputDescText').value;
+    var creditHours = document.getElementById('inputCreditHours').value.trim() || "—";
+
+    document.getElementById('recipientName').textContent = name;
+    document.getElementById('descNameSpan').textContent = name;
+    document.getElementById('methodTitleSpan').textContent = method;
+    document.getElementById('descTextSpan').textContent = descText;
+    document.getElementById('certIdSpan').textContent = certId;
+    document.getElementById('creditHoursSpan').textContent = creditHours;
+
+    if (dateVal) {
+      var parts = dateVal.split("-");
+      var d = parseInt(parts[2], 10);
+      var formatted = formatDateParts(dateVal);
+      document.getElementById('dateHeldSpan').innerHTML =
+        ordinal(d).replace(/(st|nd|rd|th)$/, '<sup style="font-size:9px;">$1</sup>').replace(d, d) 
+        + " " + MONTHS[parseInt(parts[1],10)-1] + " " + parts[0];
+      document.getElementById('dateFooterSpan').textContent = formatted.footer;
+    }
+  }
+
+  document.getElementById('inputName').addEventListener('input', updateCertificate);
+  document.getElementById('inputMethod').addEventListener('input', updateCertificate);
+  document.getElementById('inputDate').addEventListener('input', updateCertificate);
+  document.getElementById('inputCertId').addEventListener('input', updateCertificate);
+  document.getElementById('inputCreditHours').addEventListener('input', updateCertificate);
+  document.getElementById('inputDescText').addEventListener('input', updateCertificate);
+
+  updateCertificate();
+</script>
+
+</body>
+</html>
