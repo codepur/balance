@@ -154,7 +154,7 @@
   .physio-logo{
     position: absolute;
     top: 60px; left: 60px;
-    height: 96px; width: auto;
+    height: 110px; width: auto;
     z-index: 2;
   }
   .credit-hours{
@@ -217,7 +217,7 @@
   }
 
   .recipient{
-    font-family: 'TeX Gyre Chorus', cursive;
+    font-family: 'TeX Gyre Pagella', serif;
     font-size: 50px;
     color: var(--navy);
     margin: 2px 0 0;
@@ -269,12 +269,13 @@
   }
   .sig{ display: table-cell; width: 50%; text-align: center; vertical-align: bottom; }
   .sig-img{
-    height: 50px; width: auto;
+    height: 60px; width: auto;
     display: block; margin: 0 auto -2px;
     border-radius: 10%;
+    mix-blend-mode: multiply;
   }
   .sig-line{
-    width: 210px; height: 1px; background: var(--navy);
+    width: 220px; height: 1px; background: var(--navy);
     margin: 4px auto 6px;
   }
   .sig-name{
@@ -355,7 +356,7 @@
       <div class="watermark"><img src="assets/logo.png" alt="watermark"></div>
       <img src="assets/physio.png" class="physio-logo" alt="Physiotherapy Logo">
       <div class="credit-hours">
-        <div style="font-size:7px; color:var(--navy); letter-spacing:4px; margin-bottom:1px; margin-left:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div style="font-size:9px; color:var(--navy); letter-spacing:4px; margin-bottom:1px; margin-left:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         Credit Hours : <span id="creditHoursSpan">8 Hrs</span>
       </div>
 
